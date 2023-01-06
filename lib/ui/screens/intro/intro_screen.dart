@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../widgets/buttons/button.dart';
+import '../../../route/router.dart' as route;
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
@@ -17,9 +19,10 @@ class IntroScreen extends StatelessWidget {
           children: <Widget>[
             Image.asset('assets/img/background_intro.png'),
             Positioned(
-              left: 145,
+              left: 140,
               child: SizedBox(
-                width: size.width - 145,
+                width: size.width - 140,
+                height: size.height,
                 child: Row(
                   children: <Widget>[
                     Flexible(
@@ -27,10 +30,9 @@ class IntroScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(24),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            SizedBox(
-                              height: size.height / 3,
-                            ),
+                            const SizedBox.shrink(),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -56,6 +58,32 @@ class IntroScreen extends StatelessWidget {
                                   'Join For Free.',
                                   style: Theme.of(context).textTheme.labelLarge,
                                 ),
+                                _height(50),
+                              ],
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Button(
+                                  margin: EdgeInsets.zero,
+                                  title: 'Sign in',
+                                  icon: SvgPicture.asset(
+                                      'assets/icons/arrow_right.svg'),
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      route.loginPage,
+                                    );
+                                  },
+                                ),
+                                _height(20),
+                                Text(
+                                  'Create an account',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .apply(fontWeightDelta: 1),
+                                ),
+                                _height(0),
                               ],
                             )
                           ],
