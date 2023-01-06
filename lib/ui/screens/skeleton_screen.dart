@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_production_boilerplate/ui/screens/dashboard/dashboard_screen.dart';
 
 import '../../cubit/bottom_nav_cubit.dart';
 import '../widgets/app_bar_gone.dart';
 import '../widgets/bottom_nav_bar.dart';
-import 'first_screen.dart';
 import 'second_screen.dart';
 
 class SkeletonScreen extends StatelessWidget {
@@ -13,7 +13,7 @@ class SkeletonScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const List<Widget> pageNavigation = <Widget>[
-      FirstScreen(),
+      DashboardScreen(),
       SecondScreen(),
     ];
 
@@ -34,7 +34,7 @@ class SkeletonScreen extends StatelessWidget {
           ),
 
           bottomNavigationBar: const BottomNavBar(),
-          backgroundColor: Theme.of(context).colorScheme.background,
+          // backgroundColor: Theme.of(context).colorScheme.background,
         ));
   }
 }
