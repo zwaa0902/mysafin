@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 import 'package:flutter/services.dart';
@@ -24,6 +25,9 @@ class Utils {
     }
     return deviceId;
   }
+
+  static void hideKeyBoard(BuildContext context) =>
+      FocusScope.of(context).unfocus();
 
   static const bool isWeb = kIsWeb;
   static final bool isAndroid = defaultTargetPlatform == TargetPlatform.android;

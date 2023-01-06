@@ -7,8 +7,8 @@ enum BtnType { contained, outlined, plain }
 
 enum BtnSize { small, medium, large }
 
-class Button extends StatefulWidget {
-  const Button({
+class SfButton extends StatefulWidget {
+  const SfButton({
     super.key,
     required this.title,
     this.onTap,
@@ -34,10 +34,10 @@ class Button extends StatefulWidget {
   final SvgPicture? icon;
 
   @override
-  State<Button> createState() => _ButtonState();
+  State<SfButton> createState() => _ButtonState();
 }
 
-class _ButtonState extends State<Button> {
+class _ButtonState extends State<SfButton> {
   @override
   Widget build(BuildContext context) {
     final Widget gestureDetector = widget.type == BtnType.plain

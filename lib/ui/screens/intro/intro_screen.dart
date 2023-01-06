@@ -65,7 +65,7 @@ class IntroScreen extends StatelessWidget {
                             ),
                             Column(
                               children: <Widget>[
-                                Button(
+                                SfButton(
                                   margin: EdgeInsets.zero,
                                   title: 'Sign in',
                                   icon: SvgPicture.asset(
