@@ -3,126 +3,172 @@ import 'package:flutter/material.dart';
 /// Colors from Tailwind CSS (v3.0) - June 2022
 ///
 /// https://tailwindcss.com/docs/customizing-colors
+///
 
-const int _primaryColor = 0xFF6366F1;
-const MaterialColor primarySwatch = MaterialColor(_primaryColor, <int, Color>{
-  50: Color(0xFFEEF2FF), // indigo-50
-  100: Color(0xFFE0E7FF), // indigo-100
-  200: Color(0xFFC7D2FE), // indigo-200
-  300: Color(0xFFA5B4FC), // indigo-300
-  400: Color(0xFF818CF8), // indigo-400
-  500: Color(_primaryColor), // indigo-500
-  600: Color(0xFF4F46E5), // indigo-600
-  700: Color(0xFF4338CA), // indigo-700
-  800: Color(0xFF3730A3), // indigo-800
-  900: Color(0xFF312E81), // indigo-900
-});
+class AppColor {
+  AppColor._();
 
-const int _textColor = 0xFF64748B;
-const MaterialColor textSwatch = MaterialColor(_textColor, <int, Color>{
-  50: Color(0xFFF8FAFC), // slate-50
-  100: Color(0xFFF1F5F9), // slate-100
-  200: Color(0xFFE2E8F0), // slate-200
-  300: Color(0xFFCBD5E1), // slate-300
-  400: Color(0xFF94A3B8), // slate-400
-  500: Color(_textColor), // slate-500
-  600: Color(0xFF475569), // slate-600
-  700: Color(0xFF334155), // slate-700
-  800: Color(0xFF1E293B), // slate-800
-  900: Color(0xFF0F172A), // slate-900
-});
+  static const Color transparent = Colors.transparent;
+  static const Color primary900 = Color(0xffC1711A);
+  static const Color primary800 = Color(0xffF47724);
+  static const Color primary600 = Color(0xffF79428);
+  static const Color primary500 = Color(0xffF8A32B);
+  static const Color primary400 = Color(0xffFFAC30);
+  static const Color primary300 = Color(0xffFBCB41);
+
+  static const Color secondary900 = Color(0xff171822);
+  static const Color secondary800 = Color(0xff1B1D28);
+  static const Color secondary700 = Color(0xff211B48);
+  static const Color secondary600 = Color(0xff2F2762);
+  static const Color secondary500 = Color(0xff283463);
+  static const Color secondary400 = Color(0xff464F77);
+  static const Color secondary300 = Color(0xff636C8C);
+  static const Color secondary200 = Color(0xff8D94AC);
+  static const Color secondary100 = Color(0xffB9BECE);
+  static const Color secondary50 = Color(0xffE3E5EB);
+  static const Color shadowBottomBarHome = Color(0xff010049);
+
+  //Neutrals
+  static const Color neutrals1000 = neutrals900;
+  static const Color neutrals900 = Color(0xff2C2C2E);
+  static const Color neutrals800 = Color(0xff3A3A3C);
+  static const Color neutrals700 = Color(0xff48484A);
+  static const Color neutrals50 = Color(0xffF2F2F7);
+  static final Color neutrals0 = neutrals900.withOpacity(0.2);
+  static const Color neutral0 = Color(0xFFFFFFFF);
+  static const Color neutral100 = Color(0xFFE5E5EA);
+  static const Color neutral200 = Color(0xFFD1D1D6);
+  static const Color neutral600 = Color(0xFF979797);
+
+//Semantic
+  static const Color success500 = Color(0xff00A369);
+  static const Color success400 = Color(0xff22B17F);
+  static const Color success300 = Color(0xff57BE95);
+  static const Color success200 = Color(0xff8BD0B2);
+
+  static const Color error700 = Color(0xffD8281E);
+  static const Color error600 = Color(0xffEA3223);
+  static const Color error300 = Color(0xffEB7069);
+  static const Color error200 = Color(0xffF49893);
+  static const Color error100 = Color(0xffFCD2DF);
+
+  static const Color noti700 = Color(0xff1B7BCB);
+  static const Color noti600 = Color(0xff248DDD);
+  static const Color noti400 = Color(0xff49A8ED);
+  static const Color noti300 = Color(0xff69B8EF);
+  static const Color noti500 = Color(0xff2B9AEA);
+  static const Color noti200 = Color(0xffDAF0F6);
+
+  static const Color warning700 = Color(0xffF5C144);
+  static const Color warning800 = Color(0xffF1A93C);
+
+  //Extend
+  static const Color teal600 = Color(0xff17A2B8);
+  static const Color teal500 = Color(0xff19B2CB);
+  static const Color teal300 = Color(0xff4EC8DB);
+  static const Color teal100 = Color(0xffB1E8F0);
+  static const Color lightSteel = Color(0xffF5F8FE);
+  static const Color greyKeyboard = Color(0xffE2E6F2);
+  static const Color grey600 = Color(0xff7E7E7E);
+  static const Color grey500 = Color(0xff7B7F9E);
+  static const Color grey60 = Color(0xffF1F3F6);
+
+  static const Color grey50 = Color(0xffffffff);
+  static const Color grey30 = Color(0xFFF1F3F6);
+  static const Color grey10 = Color(0xFFF7FAFC);
+}
 
 const Color errorColor = Color(0xFFDC2626); // red-600
 
 final ColorScheme lightColorScheme = ColorScheme.light(
-  primary: primarySwatch.shade500,
-  secondary: primarySwatch.shade500,
+  primary: AppColor.secondary600,
+  secondary: AppColor.primary400,
   onSecondary: Colors.white,
   error: errorColor,
-  background: textSwatch.shade200,
-  onBackground: textSwatch.shade500,
-  onSurface: textSwatch.shade500,
-  surface: textSwatch.shade50,
+  background: AppColor.grey10,
+  onBackground: AppColor.grey10,
+  onSurface: AppColor.secondary600,
+  surface: AppColor.secondary100,
   surfaceVariant: Colors.white,
-  shadow: textSwatch.shade900.withOpacity(.1),
+  shadow: AppColor.secondary500.withOpacity(.1),
 );
 
 final ColorScheme darkColorScheme = ColorScheme.dark(
-  primary: primarySwatch.shade500,
-  secondary: primarySwatch.shade500,
+  primary: AppColor.primary600,
+  secondary: AppColor.secondary600,
   onSecondary: Colors.white,
   error: errorColor,
-  background: const Color(0xFF171724),
-  onBackground: textSwatch.shade400,
-  onSurface: textSwatch.shade300,
-  surface: const Color(0xFF262630),
-  surfaceVariant: const Color(0xFF282832),
-  shadow: textSwatch.shade900.withOpacity(.2),
+  background: AppColor.secondary900,
+  onBackground: AppColor.secondary900,
+  onSurface: AppColor.secondary900,
+  surface: AppColor.secondary900,
+  surfaceVariant: AppColor.secondary900,
+  shadow: AppColor.secondary900.withOpacity(.2),
 );
 
 final ThemeData lightTheme = ThemeData(
   colorScheme: lightColorScheme,
   fontFamily: 'Nunito',
-  toggleableActiveColor: primarySwatch.shade500,
-  textTheme: TextTheme(
+  toggleableActiveColor: AppColor.secondary600,
+  textTheme: const TextTheme(
     displayLarge: TextStyle(
-      color: textSwatch.shade700,
+      color: AppColor.secondary800,
       fontFamily: 'Nunito',
     ),
     displayMedium: TextStyle(
-      color: textSwatch.shade600,
+      color: AppColor.secondary800,
       fontFamily: 'Nunito',
     ),
     displaySmall: TextStyle(
-      color: textSwatch.shade500,
+      color: AppColor.secondary800,
       fontFamily: 'Nunito',
     ),
     headlineLarge: TextStyle(
-      color: textSwatch.shade700,
+      color: AppColor.secondary800,
       fontFamily: 'Nunito',
     ),
     headlineMedium: TextStyle(
-      color: textSwatch.shade600,
+      color: AppColor.secondary800,
       fontFamily: 'Nunito',
     ),
     headlineSmall: TextStyle(
-      color: textSwatch.shade500,
+      color: AppColor.secondary800,
       fontFamily: 'Nunito',
     ),
     titleLarge: TextStyle(
-      color: textSwatch.shade700,
+      color: AppColor.secondary700,
       fontFamily: 'Nunito',
     ),
     titleMedium: TextStyle(
-      color: textSwatch.shade600,
+      color: AppColor.secondary700,
       fontFamily: 'Nunito',
     ),
     titleSmall: TextStyle(
-      color: textSwatch.shade500,
+      color: AppColor.secondary700,
       fontFamily: 'Nunito',
     ),
     bodyLarge: TextStyle(
-      color: textSwatch.shade700,
+      color: AppColor.secondary800,
       fontFamily: 'Nunito',
     ),
     bodyMedium: TextStyle(
-      color: textSwatch.shade600,
+      color: AppColor.secondary800,
       fontFamily: 'Nunito',
     ),
     bodySmall: TextStyle(
-      color: textSwatch.shade500,
+      color: AppColor.secondary800,
       fontFamily: 'Nunito',
     ),
     labelLarge: TextStyle(
-      color: textSwatch.shade700,
+      color: AppColor.grey600,
       fontFamily: 'Nunito',
     ),
     labelMedium: TextStyle(
-      color: textSwatch.shade600,
+      color: AppColor.grey600,
       fontFamily: 'Nunito',
     ),
     labelSmall: TextStyle(
-      color: textSwatch.shade500,
+      color: AppColor.grey600,
       fontFamily: 'Nunito',
     ),
   ),
@@ -130,66 +176,66 @@ final ThemeData lightTheme = ThemeData(
 
 final ThemeData darkTheme = lightTheme.copyWith(
   colorScheme: darkColorScheme,
-  toggleableActiveColor: primarySwatch.shade500,
-  textTheme: TextTheme(
+  toggleableActiveColor: AppColor.primary400,
+  textTheme: const TextTheme(
     displayLarge: TextStyle(
-      color: textSwatch.shade200,
+      color: AppColor.neutral0,
       fontFamily: 'Nunito',
     ),
     displayMedium: TextStyle(
-      color: textSwatch.shade300,
+      color: AppColor.neutral0,
       fontFamily: 'Nunito',
     ),
     displaySmall: TextStyle(
-      color: textSwatch.shade400,
+      color: AppColor.neutral0,
       fontFamily: 'Nunito',
     ),
     headlineLarge: TextStyle(
-      color: textSwatch.shade200,
+      color: AppColor.neutral0,
       fontFamily: 'Nunito',
     ),
     headlineMedium: TextStyle(
-      color: textSwatch.shade300,
+      color: AppColor.neutral0,
       fontFamily: 'Nunito',
     ),
     headlineSmall: TextStyle(
-      color: textSwatch.shade400,
+      color: AppColor.neutral0,
       fontFamily: 'Nunito',
     ),
     titleLarge: TextStyle(
-      color: textSwatch.shade200,
+      color: AppColor.grey10,
       fontFamily: 'Nunito',
     ),
     titleMedium: TextStyle(
-      color: textSwatch.shade300,
+      color: AppColor.grey10,
       fontFamily: 'Nunito',
     ),
     titleSmall: TextStyle(
-      color: textSwatch.shade400,
+      color: AppColor.grey10,
       fontFamily: 'Nunito',
     ),
     bodyLarge: TextStyle(
-      color: textSwatch.shade200,
+      color: AppColor.grey10,
       fontFamily: 'Nunito',
     ),
     bodyMedium: TextStyle(
-      color: textSwatch.shade300,
+      color: AppColor.grey10,
       fontFamily: 'Nunito',
     ),
     bodySmall: TextStyle(
-      color: textSwatch.shade400,
+      color: AppColor.grey10,
       fontFamily: 'Nunito',
     ),
     labelLarge: TextStyle(
-      color: textSwatch.shade200,
+      color: AppColor.grey600,
       fontFamily: 'Nunito',
     ),
     labelMedium: TextStyle(
-      color: textSwatch.shade300,
+      color: AppColor.grey600,
       fontFamily: 'Nunito',
     ),
     labelSmall: TextStyle(
-      color: textSwatch.shade400,
+      color: AppColor.grey600,
       fontFamily: 'Nunito',
     ),
   ),
