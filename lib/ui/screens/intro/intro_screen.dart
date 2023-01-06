@@ -60,7 +60,7 @@ class IntroScreen extends StatelessWidget {
                                   'Join For Free.',
                                   style: Theme.of(context).textTheme.labelLarge,
                                 ),
-                                _height(50),
+                                const Height(50),
                               ],
                             ),
                             Column(
@@ -77,7 +77,7 @@ class IntroScreen extends StatelessWidget {
                                     );
                                   },
                                 ),
-                                _height(20),
+                                const Height(20),
                                 Text(
                                   'Create an account',
                                   style: Theme.of(context)
@@ -85,7 +85,7 @@ class IntroScreen extends StatelessWidget {
                                       .bodyMedium!
                                       .apply(fontWeightDelta: 1),
                                 ),
-                                _height(0),
+                                const Height(0),
                               ],
                             )
                           ],
