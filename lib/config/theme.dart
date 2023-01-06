@@ -111,6 +111,7 @@ final ThemeData lightTheme = ThemeData(
   colorScheme: lightColorScheme,
   fontFamily: 'Nunito',
   toggleableActiveColor: AppColor.secondary600,
+  cardColor: AppColor.secondary600,
   textTheme: const TextTheme(
     displayLarge: TextStyle(
       color: AppColor.secondary800,
