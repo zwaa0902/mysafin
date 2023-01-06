@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_production_boilerplate/ui/widgets/height.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -38,7 +39,7 @@ class IntroScreen extends StatelessWidget {
                                   'assets/icons/stoken_logo.svg',
                                   height: 40,
                                 ),
-                                _height(10),
+                                const Height(10),
                                 Text(
                                   'SToken',
                                   style: Theme.of(context)
@@ -46,12 +47,12 @@ class IntroScreen extends StatelessWidget {
                                       .headline5!
                                       .apply(fontWeightDelta: 2),
                                 ),
-                                _height(10),
+                                const Height(10),
                                 Text(
                                   'Open An Account For Digital E-Wallet Solutions. Instant Payouts.',
                                   style: Theme.of(context).textTheme.labelLarge,
                                 ),
-                                _height(20),
+                                const Height(20),
                                 Text(
                                   'Join For Free.',
                                   style: Theme.of(context).textTheme.labelLarge,
@@ -69,12 +70,6 @@ class IntroScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _height(double height) {
-    return SizedBox(
-      height: height,
     );
   }
 }
