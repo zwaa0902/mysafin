@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/theme.dart';
+import '../../../cubit/dashboard_cubit.dart';
 import '../../widgets/buttons/icon_button.dart';
 import '../../widgets/height.dart';
 import '../../widgets/width.dart';
@@ -13,24 +15,28 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Theme.of(context).colorScheme.background,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(100),
-            child: menuBar(context),
-          ),
-          body: SingleChildScrollView(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: <Widget>[
-                  const Height(16),
-                  totalBalance(context),
-                  const Height(16),
-                  availableBalance(context),
-                ],
+      child: BlocProvider<DashboardCubit>(
+        create: (BuildContext context) => DashboardCubit(),
+        child: SafeArea(
+          child: Scaffold(
+            appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(100),
+              child: menuBar(context),
+            ),
+            body: SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: <Widget>[
+                    const Height(16),
+                    totalBalance(context),
+                    const Height(16),
+                    availableBalance(context),
+                  ],
+                ),
               ),
             ),
+            bottomNavigationBar: bottomNav(context),
           ),
         ),
       ),
@@ -163,6 +169,139 @@ class DashboardScreen extends StatelessWidget {
                 ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget bottomNav(BuildContext context) {
+    final double deviceWidth = MediaQuery.of(context).size.width;
+    final List<String> listTitle = <String>[
+      'title1111',
+      'title22',
+      'title3333',
+      'title3333'
+    ];
+
+    final List<IconData> listIcon = <IconData>[
+      Icons.home_rounded,
+      Icons.favorite_rounded,
+      Icons.settings_rounded,
+      Icons.person_rounded,
+    ];
+
+    return Container(
+      margin: EdgeInsets.all(deviceWidth * 0.05),
+      height: 52,
+      decoration: BoxDecoration(
+        color: Theme.of(context).bottomAppBarColor,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 30,
+            offset: const Offset(0, 10),
+          )
+        ],
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: BlocBuilder<DashboardCubit, int>(
+        builder: (BuildContext context, int state) {
+          return ListView.builder(
+            itemCount: 4,
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            itemBuilder: (_, int index) => InkWell(
+              onTap: () => context.read<DashboardCubit>().updateIndex(index),
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              child: Stack(
+                children: <Widget>[
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    width: index == state
+                        ? deviceWidth * 0.32
+                        : deviceWidth * 0.18,
+                    alignment: Alignment.center,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      height: index == state ? 40 : 0,
+                      width:
+                          index == state ? deviceWidth * 0.32 : deviceWidth * 0,
+                      decoration: BoxDecoration(
+                        color: index == state
+                            ? Colors.blueAccent.withOpacity(0.2)
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                  ),
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    width: index == state
+                        ? deviceWidth * 0.31
+                        : deviceWidth * 0.18,
+                    alignment: Alignment.center,
+                    child: Stack(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.fastLinearToSlowEaseIn,
+                              width: index == state ? deviceWidth * 0.13 : 0,
+                            ),
+                            AnimatedOpacity(
+                              opacity: index == state ? 1 : 0,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.fastLinearToSlowEaseIn,
+                              child: Text(
+                                index == state ? listTitle[index] : '',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall
+                                    ?.apply(
+                                      fontWeightDelta: 1,
+                                      color: index == state
+                                          ? Colors.blueAccent.withOpacity(0.8)
+                                          : Colors.transparent,
+                                    ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.fastLinearToSlowEaseIn,
+                              width: index == state ? deviceWidth * 0.03 : 20,
+                            ),
+                            Icon(
+                              listIcon[index],
+                              size: 24,
+                              color: index == state
+                                  ? Colors.blueAccent
+                                  : Colors.black26,
+                            )
+                            // SvgPicture.asset(
+                            //   'assets/icons/menu.svg',
+                            //   width: 24,
+                            //   color: index == state
+                            //       ? Colors.blueAccent
+                            //       : Colors.black26,
+                            // ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
