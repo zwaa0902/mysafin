@@ -107,6 +107,7 @@ final ColorScheme darkColorScheme = ColorScheme.dark(
 );
 
 final ThemeData lightTheme = ThemeData(
+  cardColor: AppColor.secondary600,
   colorScheme: lightColorScheme,
   fontFamily: 'Nunito',
   toggleableActiveColor: AppColor.secondary600,

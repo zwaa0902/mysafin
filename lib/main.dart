@@ -9,7 +9,8 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'config/theme.dart';
-import 'cubit/theme_cubit.dart';
+import 'route/router.dart';
+import 'cubit/theme/theme_cubit.dart';
 import 'ui/screens/intro/intro_screen.dart';
 import 'ui/screens/skeleton_screen.dart';
 
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
             locale: context.locale,
             debugShowCheckedModeBanner: false,
             home: const IntroScreen(),
+            onGenerateRoute: SfRouter.generateRoute,
           );
         },
       ),
