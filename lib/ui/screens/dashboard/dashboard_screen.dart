@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_production_boilerplate/ui/widgets/menu/menu_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../config/theme.dart';
 import '../../../cubit/dashboard_cubit.dart';
 import '../../widgets/card/card_cash/card_cash_widget.dart';
+import '../../widgets/card_cash/card_cash_widget.dart';
+import '../../widgets/first_screen/theme_card.dart';
 import '../../widgets/height.dart';
+import '../../widgets/menu/menu_widget.dart';
 import '../../widgets/width.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -76,6 +79,20 @@ class DashboardScreen extends StatelessWidget {
                           icon: SvgPicture.asset('assets/icons/wallet.svg'),
                           title: 'Expense',
                           color: AppColor.error100,
+                        ),
+                      ],
+                    ),
+                    const Height(16),
+                    Row(
+                      children: const [
+                        ThemeCard(
+                          mode: ThemeMode.light,
+                          icon: Ionicons.sunny_outline,
+                        ),
+                        Width(25),
+                        ThemeCard(
+                          mode: ThemeMode.dark,
+                          icon: Ionicons.moon_outline,
                         ),
                       ],
                     )
