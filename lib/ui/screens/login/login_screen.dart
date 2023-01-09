@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       onTap: () {
                                         Navigator.pushNamed(
                                           context,
-                                          route.loginPage,
+                                          route.homePage,
                                         );
                                       },
                                     ),

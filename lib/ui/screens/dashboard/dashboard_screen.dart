@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../config/theme.dart';
 import '../../../cubit/dashboard_cubit.dart';
 import '../../widgets/buttons/icon_button.dart';
+import '../../widgets/card_cash/card_cash_widget.dart';
 import '../../widgets/height.dart';
 import '../../widgets/width.dart';
 
@@ -27,11 +28,38 @@ class DashboardScreen extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     const Height(16),
                     totalBalance(context),
                     const Height(16),
                     availableBalance(context),
+                    const Height(16),
+                    Text(
+                      'Cash',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .apply(fontWeightDelta: 2),
+                    ),
+                    const Height(12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        CardCashWidget(
+                          amount: '180,000',
+                          icon: SvgPicture.asset('assets/icons/bank.svg'),
+                          title: 'Income',
+                        ),
+                        const Width(25),
+                        CardCashWidget(
+                          amount: '180,000',
+                          icon: SvgPicture.asset('assets/icons/wallet.svg'),
+                          title: 'Expense',
+                          color: AppColor.error100,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
