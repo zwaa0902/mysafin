@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             debugShowCheckedModeBanner: false,
-            home: const DashboardScreen(),
+            home: const IntroScreen(),
             onGenerateRoute: SfRouter.generateRoute,
           );
         },

@@ -57,7 +57,6 @@ class AppColor {
   static const Color noti400 = Color(0xff49A8ED);
   static const Color noti300 = Color(0xff69B8EF);
   static const Color noti500 = Color(0xff2B9AEA);
-  static const Color noti200 = Color(0xffDAF0F6);
 
   static const Color warning700 = Color(0xffF5C144);
   static const Color warning800 = Color(0xffF1A93C);
@@ -67,6 +66,7 @@ class AppColor {
   static const Color teal500 = Color(0xff19B2CB);
   static const Color teal300 = Color(0xff4EC8DB);
   static const Color teal100 = Color(0xffB1E8F0);
+  static const Color teal50 = Color(0xffDAF0F6);
   static const Color lightSteel = Color(0xffF5F8FE);
   static const Color greyKeyboard = Color(0xffE2E6F2);
   static const Color grey600 = Color(0xff7E7E7E);

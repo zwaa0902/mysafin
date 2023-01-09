@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../config/theme.dart';
 import '../../../cubit/dashboard_cubit.dart';
 import '../../widgets/buttons/icon_button.dart';
+import '../../widgets/card_cash/card_cash_widget.dart';
 import '../../widgets/height.dart';
 import '../../widgets/width.dart';
 
@@ -27,11 +28,38 @@ class DashboardScreen extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     const Height(16),
                     totalBalance(context),
                     const Height(16),
                     availableBalance(context),
+                    const Height(16),
+                    Text(
+                      'Cash',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .apply(fontWeightDelta: 2),
+                    ),
+                    const Height(12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        CardCashWidget(
+                          amount: '180,000',
+                          icon: SvgPicture.asset('assets/icons/bank.svg'),
+                          title: 'Income',
+                        ),
+                        const Width(25),
+                        CardCashWidget(
+                          amount: '180,000',
+                          icon: SvgPicture.asset('assets/icons/wallet.svg'),
+                          title: 'Expense',
+                          color: AppColor.error100,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -176,10 +204,10 @@ class DashboardScreen extends StatelessWidget {
   Widget bottomNav(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
     final List<String> listTitle = <String>[
-      'title1111',
-      'title22',
-      'title3333',
-      'title3333'
+      'Dashboard',
+      'Transactions',
+      'Settings',
+      'Profile'
     ];
 
     final List<IconData> listIcon = <IconData>[
@@ -240,7 +268,7 @@ class DashboardScreen extends StatelessWidget {
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.fastLinearToSlowEaseIn,
                     width: index == state
-                        ? deviceWidth * 0.31
+                        ? deviceWidth * 0.32
                         : deviceWidth * 0.18,
                     alignment: Alignment.center,
                     child: Stack(
@@ -250,7 +278,7 @@ class DashboardScreen extends StatelessWidget {
                             AnimatedContainer(
                               duration: const Duration(milliseconds: 500),
                               curve: Curves.fastLinearToSlowEaseIn,
-                              width: index == state ? deviceWidth * 0.13 : 0,
+                              width: index == state ? deviceWidth * 0.1 : 0,
                             ),
                             AnimatedOpacity(
                               opacity: index == state ? 1 : 0,
@@ -260,9 +288,9 @@ class DashboardScreen extends StatelessWidget {
                                 index == state ? listTitle[index] : '',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .titleSmall
+                                    .bodySmall
                                     ?.apply(
-                                      fontWeightDelta: 1,
+                                      fontWeightDelta: 2,
                                       color: index == state
                                           ? Colors.blueAccent.withOpacity(0.8)
                                           : Colors.transparent,
