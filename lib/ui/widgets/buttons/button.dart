@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/theme.dart';
+import '../width.dart';
 
 enum BtnType { contained, outlined, plain }
 
@@ -20,6 +21,7 @@ class SfButton extends StatefulWidget {
     this.size = BtnSize.medium,
     this.isCapitalized = true,
     this.icon,
+    this.isSuffixIcon = true,
   });
 
   final BtnType type;
@@ -32,6 +34,7 @@ class SfButton extends StatefulWidget {
   final bool safeArea;
   final EdgeInsets? margin;
   final SvgPicture? icon;
+  final bool isSuffixIcon;
 
   @override
   State<SfButton> createState() => _ButtonState();
@@ -49,9 +52,16 @@ class _ButtonState extends State<SfButton> {
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               alignment: Alignment.center,
             ),
-            child: Text(
-              widget.title,
-              style: style,
+            child: Row(
+              children: <Widget>[
+                if (!widget.isSuffixIcon) widget.icon ?? const SizedBox(),
+                Text(
+                  widget.title,
+                  style: style,
+                ),
+                const Width(8),
+                if (widget.isSuffixIcon) widget.icon ?? const SizedBox(),
+              ],
             ),
           )
         : GestureDetector(
@@ -101,7 +111,7 @@ class _ButtonState extends State<SfButton> {
     if (widget.size == BtnSize.small) {
       return Theme.of(context).textTheme.bodySmall!.apply(fontWeightDelta: 2);
     } else if (widget.size == BtnSize.large) {
-      return Theme.of(context).textTheme.bodyLarge!.apply(fontWeightDelta: 2);
+      return Theme.of(context).textTheme.titleMedium!.apply(fontWeightDelta: 2);
     }
     return Theme.of(context).textTheme.bodyMedium!.apply(fontWeightDelta: 2);
   }

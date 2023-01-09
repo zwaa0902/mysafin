@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_production_boilerplate/ui/screens/menu/menu_screen.dart';
+import 'package:flutter_production_boilerplate/ui/widgets/menu/menu_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_zoom_drawer/config.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 import '../../../config/theme.dart';
 import '../../../cubit/dashboard_cubit.dart';
 import '../../widgets/buttons/icon_button.dart';
-import '../../widgets/card_cash/card_cash_widget.dart';
+import '../../widgets/card/card_cash/card_cash_widget.dart';
 import '../../widgets/height.dart';
+import '../../widgets/list/list_card_avatar/list_card_avatar.dart';
 import '../../widgets/width.dart';
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
-
+  const DashboardScreen({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -26,14 +32,32 @@ class DashboardScreen extends StatelessWidget {
             ),
             body: SingleChildScrollView(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     const Height(16),
                     totalBalance(context),
                     const Height(16),
                     availableBalance(context),
+                    const Height(16),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: <Widget>[
+                    //     Text(
+                    //       'Send Money',
+                    //       style: Theme.of(context)
+                    //           .textTheme
+                    //           .bodyLarge!
+                    //           .apply(fontWeightDelta: 2),
+                    //     ),
+                    //     SvgPicture.asset(
+                    //       'assets/icons/send_money.svg',
+                    //       width: 24,
+                    //     )
+                    //   ],
+                    // ),
                     const Height(16),
                     Text(
                       'Cash',
@@ -77,14 +101,7 @@ class DashboardScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          STokenIconButton(
-            icon: SvgPicture.asset(
-              'assets/icons/menu.svg',
-              width: 24,
-              height: 24,
-            ),
-            onPressed: () {},
-          ),
+          MenuWidget(),
           Text(
             'Dashboard',
             style: Theme.of(context)

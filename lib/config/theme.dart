@@ -30,9 +30,10 @@ class AppColor {
 
   //Neutrals
   static const Color neutrals1000 = neutrals900;
-  static const Color neutrals900 = Color(0xff2C2C2E);
-  static const Color neutrals800 = Color(0xff3A3A3C);
-  static const Color neutrals700 = Color(0xff48484A);
+  static const Color neutrals900 = Color(0xff212330);
+  static const Color neutrals800 = Color(0xff2C2C2E);
+  static const Color neutrals700 = Color(0xff3A3A3C);
+  static const Color neutrals600 = Color(0xff48484A);
   static const Color neutrals50 = Color(0xffF2F2F7);
   static final Color neutrals0 = neutrals900.withOpacity(0.2);
   static const Color neutral0 = Color(0xFFFFFFFF);
@@ -71,7 +72,7 @@ class AppColor {
   static const Color greyKeyboard = Color(0xffE2E6F2);
   static const Color grey600 = Color(0xff7E7E7E);
   static const Color grey500 = Color(0xff7B7F9E);
-  static const Color grey60 = Color(0xffF1F3F6);
+  static const Color grey60 = Color(0xffEDF1F6);
 
   static const Color grey50 = Color(0xffffffff);
   static const Color grey30 = Color(0xFFF1F3F6);
@@ -86,7 +87,7 @@ final ColorScheme lightColorScheme = ColorScheme.light(
   onSecondary: Colors.white,
   error: errorColor,
   background: AppColor.grey10,
-  onBackground: AppColor.grey10,
+  onBackground: AppColor.grey60,
   onSurface: AppColor.secondary600,
   surface: AppColor.secondary100,
   surfaceVariant: Colors.white,
@@ -99,7 +100,7 @@ final ColorScheme darkColorScheme = ColorScheme.dark(
   onSecondary: Colors.white,
   error: errorColor,
   background: AppColor.secondary900,
-  onBackground: AppColor.secondary900,
+  onBackground: AppColor.neutrals900,
   onSurface: AppColor.secondary900,
   surface: AppColor.secondary900,
   surfaceVariant: AppColor.secondary900,

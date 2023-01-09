@@ -12,9 +12,9 @@ class SkeletonScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const List<Widget> pageNavigation = <Widget>[
+    List<Widget> pageNavigation = <Widget>[
       DashboardScreen(),
-      SecondScreen(),
+      const SecondScreen(),
     ];
 
     return BlocProvider<BottomNavCubit>(

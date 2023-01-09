@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../config/theme.dart';
-import '../height.dart';
+import '../../../../config/theme.dart';
+import '../../height.dart';
 
 class CardCashWidget extends StatelessWidget {
   const CardCashWidget({
@@ -34,16 +34,12 @@ class CardCashWidget extends StatelessWidget {
           children: <Widget>[
             icon,
             const Height(20),
-            Row(
-              children: <Widget>[
-                Text(
-                  '$amount VND',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .apply(fontWeightDelta: 2),
-                ),
-              ],
+            Text(
+              '$amount VND',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .apply(fontWeightDelta: 2),
             ),
             const Height(12),
             Text(

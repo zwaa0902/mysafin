@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../ui/screens/dashboard/dashboard_page.dart';
 import '../ui/screens/dashboard/dashboard_screen.dart';
 import '../ui/screens/intro/intro_screen.dart';
 import '../ui/screens/login/login_screen.dart';
@@ -21,7 +22,7 @@ class SfRouter {
         );
       case homePage:
         return MaterialPageRoute(
-          builder: (BuildContext context) => const DashboardScreen(),
+          builder: (BuildContext context) => const DashboardPage(),
           settings: const RouteSettings(name: homePage),
         );
       case loginPage:
