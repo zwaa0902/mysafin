@@ -204,10 +204,10 @@ class DashboardScreen extends StatelessWidget {
   Widget bottomNav(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
     final List<String> listTitle = <String>[
-      'title1111',
-      'title22',
-      'title3333',
-      'title3333'
+      'Dashboard',
+      'Transactions',
+      'Settings',
+      'Profile'
     ];
 
     final List<IconData> listIcon = <IconData>[
@@ -268,7 +268,7 @@ class DashboardScreen extends StatelessWidget {
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.fastLinearToSlowEaseIn,
                     width: index == state
-                        ? deviceWidth * 0.31
+                        ? deviceWidth * 0.32
                         : deviceWidth * 0.18,
                     alignment: Alignment.center,
                     child: Stack(
@@ -278,7 +278,7 @@ class DashboardScreen extends StatelessWidget {
                             AnimatedContainer(
                               duration: const Duration(milliseconds: 500),
                               curve: Curves.fastLinearToSlowEaseIn,
-                              width: index == state ? deviceWidth * 0.13 : 0,
+                              width: index == state ? deviceWidth * 0.1 : 0,
                             ),
                             AnimatedOpacity(
                               opacity: index == state ? 1 : 0,
@@ -288,9 +288,9 @@ class DashboardScreen extends StatelessWidget {
                                 index == state ? listTitle[index] : '',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .titleSmall
+                                    .bodySmall
                                     ?.apply(
-                                      fontWeightDelta: 1,
+                                      fontWeightDelta: 2,
                                       color: index == state
                                           ? Colors.blueAccent.withOpacity(0.8)
                                           : Colors.transparent,
