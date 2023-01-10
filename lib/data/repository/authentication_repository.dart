@@ -92,7 +92,7 @@ class AuthenticationRepository {
   }
 
   Future<void> logout() async {
-    loginInfo = {} as Map<String, dynamic>;
+    loginInfo = {};
     _save();
   }
 }

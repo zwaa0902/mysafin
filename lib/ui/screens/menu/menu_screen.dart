@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
+import '../../../blocs/auth_bloc/auth_bloc.dart';
 import '../../../config/theme.dart';
 import '../../../cubit/login/login_cubit.dart';
 import '../../../cubit/menu/menu_cubit.dart';
@@ -53,7 +54,7 @@ class MenuScreen extends StatelessWidget {
                   bottomRight: Radius.circular(50),
                 ),
               ),
-              child: BlocBuilder<LoginCubit, LoginState>(
+              child: BlocBuilder<AuthBloc, AuthState>(
                 builder: (context, state) {
                   return Row(
                     children: <Widget>[
@@ -76,13 +77,14 @@ class MenuScreen extends StatelessWidget {
                           height: 44,
                         ),
                       const Width(12),
-                      Text(
-                        state.userModel?.fullName ?? '',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .apply(fontWeightDelta: 2),
-                      ),
+                      if (state is AuthSuccessState)
+                        Text(
+                          state.userModel?.fullName ?? '',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .apply(fontWeightDelta: 2),
+                        ),
                     ],
                   );
                 },
@@ -113,6 +115,8 @@ class MenuScreen extends StatelessWidget {
                 type: BtnType.plain,
                 icon: SvgPicture.asset('assets/icons/logout.svg'),
                 onTap: () {
+                  BlocProvider.of<AuthBloc>(context).add(LogoutEvent());
+
                   Navigator.pushNamedAndRemoveUntil(
                       context, router.introPage, (Route route) => false);
                 },
