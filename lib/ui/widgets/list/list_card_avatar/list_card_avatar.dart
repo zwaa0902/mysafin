@@ -10,15 +10,13 @@ class AvatarCardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        primary: false,
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        physics: const AlwaysScrollableScrollPhysics(),
-        itemCount: sendMoneyList.length + 1,
-        itemBuilder: itemBuilder,
-      ),
+    return ListView.builder(
+      primary: false,
+      shrinkWrap: true,
+      scrollDirection: Axis.horizontal,
+      physics: const AlwaysScrollableScrollPhysics(),
+      itemCount: sendMoneyList.length + 1,
+      itemBuilder: itemBuilder,
     );
   }
 
@@ -31,13 +29,13 @@ class AvatarCardList extends StatelessWidget {
             right: 16,
             left: 16,
           ),
-          child: Expanded(
-            child: CardTransferWidget(
-              name: name,
-            ),
+          child: CardTransferWidget(
+            name: name,
           ));
     } else if (index == sendMoneyList.length) {
       return Container(
+        height: 52,
+        width: 52,
         color: AppColor.primary400,
         padding: const EdgeInsets.all(16),
         child: const Icon(
@@ -47,7 +45,9 @@ class AvatarCardList extends StatelessWidget {
       );
     }
 
-    return Container();
+    return Container(
+      color: Colors.red,
+    );
   }
 
   Widget itemBuilder(BuildContext context, int index) {

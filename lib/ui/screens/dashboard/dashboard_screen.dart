@@ -8,6 +8,7 @@ import '../../../cubit/dashboard_cubit.dart';
 import '../../widgets/app_bar/app_bar.dart';
 import '../../widgets/card/card_cash/card_cash_widget.dart';
 import '../../widgets/height.dart';
+import '../../widgets/list/list_card_avatar/list_card_avatar.dart';
 import '../../widgets/width.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -35,22 +36,45 @@ class DashboardScreen extends StatelessWidget {
                     const Height(16),
                     availableBalance(context),
                     const Height(16),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: <Widget>[
-                    //     Text(
-                    //       'Send Money',
-                    //       style: Theme.of(context)
-                    //           .textTheme
-                    //           .bodyLarge!
-                    //           .apply(fontWeightDelta: 2),
-                    //     ),
-                    //     SvgPicture.asset(
-                    //       'assets/icons/send_money.svg',
-                    //       width: 24,
-                    //     )
-                    //   ],
-                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Send Money',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .apply(fontWeightDelta: 2),
+                        ),
+                        SvgPicture.asset(
+                          'assets/icons/send_money.svg',
+                          width: 24,
+                        )
+                      ],
+                    ),
+                    // const SizedBox(
+                    //     height: 180,
+                    //     child: AvatarCardList(
+                    //         sendMoneyList: ['Mike', 'Josh', 'Ashley'])),
+                    const Height(12),
+
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                color: AppColor.primary400,
+                                borderRadius: BorderRadius.circular(50)),
+                            padding: const EdgeInsets.all(16),
+                            child: const Icon(
+                              Icons.add,
+                              size: 24,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     const Height(16),
                     Text(
                       'Cash',
@@ -190,137 +214,4 @@ class DashboardScreen extends StatelessWidget {
       ),
     );
   }
-
-  // Widget bottomNav(BuildContext context) {
-  //   final double deviceWidth = MediaQuery.of(context).size.width;
-  //   final List<String> listTitle = <String>[
-  //     'Dashboard',
-  //     'Transactions',
-  //     'Settings',
-  //     'Profile'
-  //   ];
-
-  //   final List<IconData> listIcon = <IconData>[
-  //     Icons.home_rounded,
-  //     Icons.favorite_rounded,
-  //     Icons.settings_rounded,
-  //     Icons.person_rounded,
-  //   ];
-
-  //   return Container(
-  //     margin: EdgeInsets.all(deviceWidth * 0.05),
-  //     height: 52,
-  //     decoration: BoxDecoration(
-  //       color: Theme.of(context).bottomAppBarColor,
-  //       boxShadow: <BoxShadow>[
-  //         BoxShadow(
-  //           color: Colors.black.withOpacity(0.1),
-  //           blurRadius: 30,
-  //           offset: const Offset(0, 10),
-  //         )
-  //       ],
-  //       borderRadius: BorderRadius.circular(50),
-  //     ),
-  //     child: BlocBuilder<DashboardCubit, int>(
-  //       builder: (BuildContext context, int state) {
-  //         return ListView.builder(
-  //           itemCount: 4,
-  //           scrollDirection: Axis.horizontal,
-  //           padding: const EdgeInsets.symmetric(horizontal: 8),
-  //           itemBuilder: (_, int index) => InkWell(
-  //             onTap: () => context.read<DashboardCubit>().updateIndex(index),
-  //             splashColor: Colors.transparent,
-  //             highlightColor: Colors.transparent,
-  //             child: Stack(
-  //               children: <Widget>[
-  //                 AnimatedContainer(
-  //                   duration: const Duration(milliseconds: 500),
-  //                   curve: Curves.fastLinearToSlowEaseIn,
-  //                   width: index == state
-  //                       ? deviceWidth * 0.32
-  //                       : deviceWidth * 0.18,
-  //                   alignment: Alignment.center,
-  //                   child: AnimatedContainer(
-  //                     duration: const Duration(milliseconds: 500),
-  //                     curve: Curves.fastLinearToSlowEaseIn,
-  //                     height: index == state ? 40 : 0,
-  //                     width:
-  //                         index == state ? deviceWidth * 0.32 : deviceWidth * 0,
-  //                     decoration: BoxDecoration(
-  //                       color: index == state
-  //                           ? Colors.blueAccent.withOpacity(0.2)
-  //                           : Colors.transparent,
-  //                       borderRadius: BorderRadius.circular(50),
-  //                     ),
-  //                   ),
-  //                 ),
-  //                 AnimatedContainer(
-  //                   duration: const Duration(milliseconds: 500),
-  //                   curve: Curves.fastLinearToSlowEaseIn,
-  //                   width: index == state
-  //                       ? deviceWidth * 0.32
-  //                       : deviceWidth * 0.18,
-  //                   alignment: Alignment.center,
-  //                   child: Stack(
-  //                     children: <Widget>[
-  //                       Row(
-  //                         children: <Widget>[
-  //                           AnimatedContainer(
-  //                             duration: const Duration(milliseconds: 500),
-  //                             curve: Curves.fastLinearToSlowEaseIn,
-  //                             width: index == state ? deviceWidth * 0.1 : 0,
-  //                           ),
-  //                           AnimatedOpacity(
-  //                             opacity: index == state ? 1 : 0,
-  //                             duration: const Duration(milliseconds: 500),
-  //                             curve: Curves.fastLinearToSlowEaseIn,
-  //                             child: Text(
-  //                               index == state ? listTitle[index] : '',
-  //                               style: Theme.of(context)
-  //                                   .textTheme
-  //                                   .bodySmall
-  //                                   ?.apply(
-  //                                     fontWeightDelta: 2,
-  //                                     color: index == state
-  //                                         ? Colors.blueAccent.withOpacity(0.8)
-  //                                         : Colors.transparent,
-  //                                   ),
-  //                             ),
-  //                           )
-  //                         ],
-  //                       ),
-  //                       Row(
-  //                         children: <Widget>[
-  //                           AnimatedContainer(
-  //                             duration: const Duration(milliseconds: 500),
-  //                             curve: Curves.fastLinearToSlowEaseIn,
-  //                             width: index == state ? deviceWidth * 0.03 : 20,
-  //                           ),
-  //                           Icon(
-  //                             listIcon[index],
-  //                             size: 24,
-  //                             color: index == state
-  //                                 ? Colors.blueAccent
-  //                                 : Colors.black26,
-  //                           )
-  //                           // SvgPicture.asset(
-  //                           //   'assets/icons/menu.svg',
-  //                           //   width: 24,
-  //                           //   color: index == state
-  //                           //       ? Colors.blueAccent
-  //                           //       : Colors.black26,
-  //                           // ),
-  //                         ],
-  //                       )
-  //                     ],
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         );
-  //       },
-  //     ),
-  //   );
-  // }
 }

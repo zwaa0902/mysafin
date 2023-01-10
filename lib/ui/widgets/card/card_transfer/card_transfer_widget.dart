@@ -26,7 +26,6 @@ class CardTransferWidget extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(24),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           if (gender == Gender.male)
             SvgPicture.asset('assets/icons/male_avatar.svg')
