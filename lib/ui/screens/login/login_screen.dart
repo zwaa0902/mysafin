@@ -8,6 +8,7 @@ import '../../../utils/utils.dart';
 import '../../widgets/buttons/button.dart';
 import '../../widgets/height.dart';
 import '../../widgets/textfields/text_field.dart';
+import '../../widgets/toast_message/toast_message.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -118,6 +119,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             'assets/icons/arrow_right.svg'),
                                         onTap: () {
                                           context.read<LoginCubit>().onLogin();
+                                          SfToastMessages().show(
+                                              context: context,
+                                              text: 'Đăng nhập thành công',
+                                              state: ToastMessageState.success);
                                           if (state.userModel != null) {
                                             Navigator.pushNamed(
                                                 context, route.homePage);

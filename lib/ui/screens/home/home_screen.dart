@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import '../../../cubit/login/login_cubit.dart';
+import '../../../route/router.dart' as route;
 
-import '../../../cubit/menu/menu_cubit.dart';
-import '../../../data/models/menu_item.dart';
-import '../dashboard/dashboard_screen.dart';
-import '../menu/menu_screen.dart';
-import '../profile/profile_screen.dart';
-import '../settings/settings_screen.dart';
-import '../transactions/transactions_screen.dart';
+import '../../../utils/utils.dart';
+import '../../widgets/buttons/button.dart';
+import '../../widgets/height.dart';
+import '../../widgets/textfields/text_field.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, this.currentItem = MenuItems.dashboard});
@@ -41,12 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: getScreen(widget.currentItem),
-      bottomNavigationBar: SafeArea(
-        child: Container(
-            color: Theme.of(context).colorScheme.background,
-            child: bottomNav(context)),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: getScreen(widget.currentItem),
+        bottomNavigationBar: SafeArea(
+          child: Container(
+              color: Theme.of(context).colorScheme.background,
+              child: bottomNav(context)),
+        ),
       ),
     );
   }
