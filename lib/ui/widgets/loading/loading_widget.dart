@@ -10,7 +10,6 @@ class LoadingWidget extends StatelessWidget {
   });
 
   final Size? size;
-  static Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +19,11 @@ class LoadingWidget extends StatelessWidget {
       child: Center(
         child: Utils.isAndroid
             ? CircularProgressIndicator(
-                color: color,
+                color: Theme.of(context).colorScheme.primary,
               )
             : CupertinoActivityIndicator(
                 radius: 15,
-                color: color,
+                color: Theme.of(context).colorScheme.primary,
               ),
       ),
     );

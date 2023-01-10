@@ -8,7 +8,6 @@ import 'package:flutter_production_boilerplate/ui/screens/settings/settings_scre
 import 'package:flutter_production_boilerplate/ui/screens/transactions/transactions_screen.dart';
 
 import '../../../cubit/menu/menu_cubit.dart';
-import '../../../route/router.dart' as route;
 import '../menu/menu_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -43,12 +42,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: getScreen(widget.currentItem),
-      bottomNavigationBar: SafeArea(
-        child: Container(
-            color: Theme.of(context).colorScheme.background,
-            child: bottomNav(context)),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: getScreen(widget.currentItem),
+        bottomNavigationBar: SafeArea(
+          child: Container(
+              color: Theme.of(context).colorScheme.background,
+              child: bottomNav(context)),
+        ),
       ),
     );
   }
