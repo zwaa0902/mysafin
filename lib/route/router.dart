@@ -1,9 +1,6 @@
-// ignore_for_file: always_specify_types
-
 import 'package:flutter/material.dart';
 
 import '../ui/screens/dashboard/dashboard_page.dart';
-import '../ui/screens/dashboard/dashboard_screen.dart';
 import '../ui/screens/intro/intro_screen.dart';
 import '../ui/screens/login/login_screen.dart';
 import '../ui/screens/profile/profile_screen.dart';

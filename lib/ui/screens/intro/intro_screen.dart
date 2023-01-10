@@ -85,7 +85,7 @@ class IntroScreen extends StatelessWidget {
                                       .bodyMedium!
                                       .apply(fontWeightDelta: 1),
                                 ),
-                                const Height(0),
+                                const Height(30),
                               ],
                             )
                           ],
