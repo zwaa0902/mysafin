@@ -11,8 +11,10 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'config/theme.dart';
+import 'data/repository/authentication_repository.dart';
 import 'route/router.dart';
 import 'cubit/theme/theme_cubit.dart';
+import 'ui/screens/home/home_screen.dart';
 import 'ui/screens/intro/intro_screen.dart';
 import 'ui/screens/skeleton_screen.dart';
 
@@ -25,6 +27,9 @@ void main() async {
   if (Platform.isAndroid) {
     await FlutterDisplayMode.setHighRefreshRate();
   }
+
+  await AuthenticationRepository.sharedInstance.load();
+
   final Directory tmpDir = await getTemporaryDirectory();
   Hive.init(tmpDir.toString());
   final HydratedStorage storage = await HydratedStorage.build(
@@ -78,7 +83,10 @@ class MyApp extends StatelessWidget {
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             debugShowCheckedModeBanner: false,
-            home: const IntroScreen(),
+            home: AuthenticationRepository.sharedInstance.loginInfo['user'] !=
+                    null
+                ? HomeScreen()
+                : const IntroScreen(),
             onGenerateRoute: SfRouter.generateRoute,
           );
         },
