@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_production_boilerplate/ui/widgets/menu/menu_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/theme.dart';
 import '../../../cubit/dashboard_cubit.dart';
 import '../../widgets/app_bar/app_bar.dart';
 import '../../widgets/card/card_cash/card_cash_widget.dart';
+import '../../widgets/card/card_transfer/card_transfer_widget.dart';
 import '../../widgets/height.dart';
-import '../../widgets/list/list_card_avatar/list_card_avatar.dart';
 import '../../widgets/width.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -25,6 +24,7 @@ class DashboardScreen extends StatelessWidget {
           child: Scaffold(
             appBar: const SfAppBarWidget(title: 'Dashboard'),
             body: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
@@ -36,44 +36,54 @@ class DashboardScreen extends StatelessWidget {
                     const Height(16),
                     availableBalance(context),
                     const Height(16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          'Send Money',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .apply(fontWeightDelta: 2),
-                        ),
-                        SvgPicture.asset(
-                          'assets/icons/send_money.svg',
-                          width: 24,
-                        )
-                      ],
-                    ),
-                    // const SizedBox(
-                    //     height: 180,
-                    //     child: AvatarCardList(
-                    //         sendMoneyList: ['Mike', 'Josh', 'Ashley'])),
-                    const Height(12),
-
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                                color: AppColor.primary400,
-                                borderRadius: BorderRadius.circular(50)),
-                            padding: const EdgeInsets.all(16),
-                            child: const Icon(
-                              Icons.add,
-                              size: 24,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              'Send Money',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .apply(fontWeightDelta: 2),
                             ),
+                            SvgPicture.asset(
+                              'assets/icons/send_money.svg',
+                              width: 24,
+                            )
+                          ],
+                        ),
+                        const Height(16),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: AppColor.primary400,
+                                    borderRadius: BorderRadius.circular(50)),
+                                padding: const EdgeInsets.all(16),
+                                child: const Icon(
+                                  Icons.add,
+                                  size: 24,
+                                ),
+                              ),
+                              ...[
+                                'Mike',
+                                'Josh',
+                                'Ashley'
+                              ].map((name) => Container(
+                                    padding: const EdgeInsets.only(left: 16),
+                                    child: CardTransferWidget(
+                                      name: name,
+                                    ),
+                                  ))
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     const Height(16),
                     Text(
@@ -105,7 +115,6 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // bottomNavigationBar: bottomNav(context),
           ),
         ),
       ),
