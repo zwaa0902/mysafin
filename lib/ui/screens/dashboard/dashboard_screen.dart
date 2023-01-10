@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_production_boilerplate/ui/widgets/menu/menu_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/theme.dart';
@@ -8,7 +7,6 @@ import '../../../cubit/dashboard_cubit.dart';
 import '../../widgets/app_bar/app_bar.dart';
 import '../../widgets/card/card_cash/card_cash_widget.dart';
 import '../../widgets/height.dart';
-import '../../widgets/list/list_card_avatar/list_card_avatar.dart';
 import '../../widgets/width.dart';
 
 class DashboardScreen extends StatelessWidget {
