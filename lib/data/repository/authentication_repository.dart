@@ -5,6 +5,7 @@ import 'dart:convert';
 import '../../config/api.dart';
 import '../../utils/exception/exception.dart';
 import '../../utils/utils.dart';
+import '../models/user_model.dart';
 
 class AuthenticationRepository {
   static final _sharedInstance = AuthenticationRepository();
@@ -45,9 +46,9 @@ class AuthenticationRepository {
         if (Utils.isEmpty(username)) {
         } else if (password.isEmpty) {
         } else {
-          String phone = username.replaceAll(' ', '');
-          String deviceId = await Utils.deviceId();
-          final body = {
+          final String phone = username.replaceAll(' ', '');
+          final String deviceId = await Utils.deviceId();
+          final Map<String, Object> body = {
             'userName': '0906287182',
             'passWord': 'Test@123',
             'realms': 'EXTERNAL',
@@ -60,7 +61,7 @@ class AuthenticationRepository {
           final res = await getAuth()
               .post('savingapp/p/sysuser/pub/user-login', data: body);
 
-          final data = res.refine(
+          final Object data = res.refine(
             code: (d) => (d['Code'] as int) - 200,
             message: (d) => d['Message'] as String?,
             timestamp: (d) => null,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../cubit/login/login_cubit.dart';
 import '../../../data/repository/authentication_repository.dart';
 import '../../../route/router.dart' as route;
 
@@ -108,33 +110,27 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .apply(fontWeightDelta: 2),
                                   ),
                                   const Height(20),
-                                  SizedBox(
-                                    width: size.width * 2 / 5,
-                                    child: SfButton(
-                                      margin: EdgeInsets.zero,
-                                      title: 'Sign in',
-                                      icon: SvgPicture.asset(
-                                          'assets/icons/arrow_right.svg'),
-                                      onTap: () async {
-                                        try {
-                                          await AuthenticationRepository
-                                              .sharedInstance
-                                              .login(
-                                            username: 'username',
-                                            password: 'password',
-                                          );
-                                          Navigator.pushNamed(
-                                            context,
-                                            route.homePage,
-                                          );
-                                        } on SfHttpException catch (ex) {
-                                          if (ex.code == 404) {
-                                            print(
-                                                'Invalid username or password.');
-                                          }
-                                        }
-                                      },
-                                    ),
+                                  BlocBuilder<LoginCubit, LoginState>(
+                                    builder: (context, state) {
+                                      return SizedBox(
+                                        width: size.width * 2 / 5,
+                                        child: SfButton(
+                                          margin: EdgeInsets.zero,
+                                          title: 'Sign in',
+                                          icon: SvgPicture.asset(
+                                              'assets/icons/arrow_right.svg'),
+                                          onTap: () {
+                                            context
+                                                .read<LoginCubit>()
+                                                .onLogin();
+                                            if (state.userModel != null) {
+                                              Navigator.pushNamed(
+                                                  context, route.homePage);
+                                            }
+                                          },
+                                        ),
+                                      );
+                                    },
                                   ),
                                   const Height(20),
                                 ])

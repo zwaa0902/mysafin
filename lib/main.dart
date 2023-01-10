@@ -11,6 +11,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'config/theme.dart';
+import 'cubit/login/login_cubit.dart';
 import 'data/repository/authentication_repository.dart';
 import 'route/router.dart';
 import 'cubit/theme/theme_cubit.dart';
@@ -66,6 +67,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<MenuCubit>(
           create: (_) => MenuCubit(),
+        ),
+        BlocProvider<LoginCubit>(
+          create: (_) => LoginCubit(),
         )
       ],
       child: BlocBuilder<ThemeCubit, ThemeModeState>(
@@ -86,7 +90,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: AuthenticationRepository.sharedInstance.loginInfo['user'] !=
                     null
-                ? DashboardPage()
+                ? const DashboardPage()
                 : const IntroScreen(),
             onGenerateRoute: SfRouter.generateRoute,
           );
