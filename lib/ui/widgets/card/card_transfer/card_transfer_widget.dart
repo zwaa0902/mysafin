@@ -19,30 +19,28 @@ class CardTransferWidget extends StatelessWidget {
   final Gender gender;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(24),
-        ),
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            if (gender == Gender.male)
-              SvgPicture.asset('assets/icons/male_avatar.svg')
-            else if (gender == Gender.female)
-              SvgPicture.asset('assets/icons/female_avatar.svg')
-            else
-              SvgPicture.asset('assets/icons/other_avatar.svg'),
-            const Height(20),
-            Text(
-              name,
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-            const Height(6),
-          ],
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          if (gender == Gender.male)
+            SvgPicture.asset('assets/icons/male_avatar.svg')
+          else if (gender == Gender.female)
+            SvgPicture.asset('assets/icons/female_avatar.svg')
+          else
+            SvgPicture.asset('assets/icons/other_avatar.svg'),
+          const Height(20),
+          Text(
+            name,
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          const Height(6),
+        ],
       ),
     );
   }
