@@ -45,7 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: getScreen(widget.currentItem),
-      bottomNavigationBar: bottomNav(context),
+      bottomNavigationBar: Container(
+          color: Theme.of(context).colorScheme.background,
+          child: bottomNav(context)),
     );
   }
 
@@ -60,12 +62,12 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
 
     return Container(
-      color: Theme.of(context).colorScheme.onBackground,
+      color: Theme.of(context).colorScheme.background,
       child: Container(
         margin: EdgeInsets.all(deviceWidth * 0.05),
         height: 52,
         decoration: BoxDecoration(
-          color: Theme.of(context).bottomAppBarColor,
+          color: Theme.of(context).colorScheme.background,
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: Colors.black.withOpacity(0.1),

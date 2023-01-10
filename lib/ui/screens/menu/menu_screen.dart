@@ -64,6 +64,7 @@ class MenuScreen extends StatelessWidget {
                 ],
               ),
             ),
+            const Height(30),
             // const Spacer(),
             BlocBuilder<MenuCubit, MenuState>(
               builder: (BuildContext context, MenuState state) {
@@ -75,8 +76,6 @@ class MenuScreen extends StatelessWidget {
                         buildMenuItemWidget(context, index, state.sfMenuItem),
                   ),
                 );
-                // ...MenuItems.all.map((SfMenuItem item) => buildMenuItem(context, item))
-                // .toList();
               },
             ),
             // const Spacer(
