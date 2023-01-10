@@ -58,15 +58,11 @@ class MenuScreen extends StatelessWidget {
                 builder: (context, state) {
                   return Row(
                     children: <Widget>[
-                      if (state.userModel?.gender == Gender.male)
+                      if (state is AuthSuccessState)
                         SvgPicture.asset(
-                          'assets/icons/male_avatar.svg',
-                          width: 44,
-                          height: 44,
-                        )
-                      else if (state.userModel?.gender == Gender.female)
-                        SvgPicture.asset(
-                          'assets/icons/female_avatar.svg',
+                          state.userModel?.gender == Gender.female
+                              ? 'assets/icons/female_avatar.svg'
+                              : 'assets/icons/male_avatar.svg',
                           width: 44,
                           height: 44,
                         )

@@ -52,7 +52,8 @@ class AvatarCardList extends StatelessWidget {
 
   Widget itemBuilder(BuildContext context, int index) {
     if (sendMoneyList.isEmpty) {
-      return const LoadingWidget();
+      // return const LoadingWidget();
+      return const SizedBox();
     } else {
       if (sendMoneyList.isEmpty) {
         return const SizedBox();

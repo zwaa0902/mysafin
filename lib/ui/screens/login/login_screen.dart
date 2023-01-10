@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_production_boilerplate/ui/widgets/loading/loading_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../blocs/auth_bloc/auth_bloc.dart';
 import '../../../cubit/login/login_cubit.dart';
@@ -41,11 +42,15 @@ class _LoginScreenState extends State<LoginScreen> {
               // show dialog
             } else if (state is AuthSuccessState) {
               Navigator.pushNamed(context, route.homePage);
+              SfToastMessages().show(
+                  context: context,
+                  text: 'Đăng nhập thành công',
+                  state: ToastMessageState.success);
             }
           },
           builder: (context, state) {
             if (state is AuthLoadingState) {
-              return loginWidget();
+              return LoadingWidget(child: loginWidget());
             } else {
               return loginWidget();
             }
@@ -151,11 +156,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 icon: SvgPicture.asset(
                                     'assets/icons/arrow_right.svg'),
                                 onTap: () {
-                                  BlocProvider.of<AuthBloc>(context)
-                                      .add(LoginEvent(
-                                    username: usernameController.text,
-                                    password: passwordController.text,
-                                  ));
+                                  BlocProvider.of<AuthBloc>(context).add(
+                                    LoginEvent(
+                                      username: usernameController.text,
+                                      password: passwordController.text,
+                                    ),
+                                  );
                                 },
                               ),
                             ),
