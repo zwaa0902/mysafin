@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/theme.dart';
 import '../../../cubit/dashboard_cubit.dart';
+import '../../widgets/app_bar/app_bar.dart';
 import '../../widgets/card/card_cash/card_cash_widget.dart';
 import '../../widgets/height.dart';
 import '../../widgets/width.dart';
@@ -21,10 +22,7 @@ class DashboardScreen extends StatelessWidget {
         create: (BuildContext context) => DashboardCubit(),
         child: SafeArea(
           child: Scaffold(
-            appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(100),
-              child: menuBar(context),
-            ),
+            appBar: const SfAppBarWidget(title: 'Dashboard'),
             body: SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -86,26 +84,6 @@ class DashboardScreen extends StatelessWidget {
             bottomNavigationBar: bottomNav(context),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget menuBar(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          const MenuWidget(),
-          Text(
-            'Dashboard',
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                ?.apply(fontWeightDelta: 3),
-          ),
-          const Width(44),
-        ],
       ),
     );
   }

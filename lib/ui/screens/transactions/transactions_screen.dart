@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../cubit/dashboard_cubit.dart';
 import '../../widgets/app_bar/app_bar.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({
+class TransactionsScreen extends StatelessWidget {
+  const TransactionsScreen({
     super.key,
   });
   @override
@@ -17,7 +17,7 @@ class SettingsScreen extends StatelessWidget {
         child: const SafeArea(
           child: Scaffold(
             appBar: SfAppBarWidget(
-              title: 'Settings',
+              title: 'Transactions',
             ),
           ),
         ),

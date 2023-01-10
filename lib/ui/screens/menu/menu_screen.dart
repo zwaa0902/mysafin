@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/theme.dart';
+import '../../../cubit/menu/menu_cubit.dart';
 import '../../../data/models/menu_item.dart';
 import '../../widgets/buttons/button.dart';
 import '../../widgets/height.dart';
@@ -25,12 +27,7 @@ class MenuItems {
 class MenuScreen extends StatelessWidget {
   const MenuScreen({
     super.key,
-    required this.currentItem,
-    required this.onSelectedItem,
   });
-
-  final SfMenuItem currentItem;
-  final ValueChanged<SfMenuItem> onSelectedItem;
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +64,13 @@ class MenuScreen extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            ...MenuItems.all
-                .map((SfMenuItem item) => buildMenuItem(context, item))
-                .toList(),
+            BlocBuilder<MenuCubit, MenuState>(
+              builder: (context, state) {
+                return ...MenuItems.all.map((SfMenuItem item) => buildMenuItem(context, item))
+                .toList();
+              },
+            ),
+                
             const Spacer(
               flex: 2,
             ),
@@ -111,7 +112,7 @@ class MenuScreen extends StatelessWidget {
                 .titleMedium!
                 .apply(fontWeightDelta: currentItem == item ? 5 : 2),
           ),
-          onTap: () {},
+          onTap: () => onSelectedItem(item),
         ),
       );
 }

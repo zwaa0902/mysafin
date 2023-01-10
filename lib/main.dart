@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
+import 'package:flutter_production_boilerplate/cubit/menu/menu_cubit.dart';
 import 'package:flutter_production_boilerplate/ui/screens/dashboard/dashboard_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -52,8 +53,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ThemeCubit>(
-      create: (BuildContext context) => ThemeCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ThemeCubit>(
+          create: (_) => ThemeCubit(),
+        ),
+        BlocProvider<MenuCubit>(
+          create: (_) => MenuCubit(),
+        )
+      ],
       child: BlocBuilder<ThemeCubit, ThemeModeState>(
         builder: (BuildContext context, ThemeModeState state) {
           return MaterialApp(

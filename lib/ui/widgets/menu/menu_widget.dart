@@ -10,6 +10,8 @@ class MenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      constraints: const BoxConstraints(),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       icon: SvgPicture.asset(
         'assets/icons/menu.svg',
         width: 24,
