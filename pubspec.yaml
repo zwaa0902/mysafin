@@ -44,6 +44,7 @@ dependencies:
   dio: ^4.0.6
   logging: ^1.1.0
   logger: ^1.1.0
+  nd_dio_utils: ^0.0.2
 
 dev_dependencies:
   flutter_test:
