@@ -6,12 +6,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 import '../../../cubit/menu/menu_cubit.dart';
 import '../../../data/models/menu_item.dart';
-import '../help/help_screen.dart';
 import '../menu/menu_screen.dart';
-import '../profile/profile_screen.dart';
-import '../settings/settings_screen.dart';
-import '../transactions/transactions_screen.dart';
-import 'dashboard_screen.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

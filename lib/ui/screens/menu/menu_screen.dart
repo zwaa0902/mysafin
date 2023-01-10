@@ -4,7 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 import '../../../config/theme.dart';
+import '../../../cubit/login/login_cubit.dart';
 import '../../../cubit/menu/menu_cubit.dart';
+import '../../../data/models/auth_model.dart';
 import '../../../data/models/menu_item.dart';
 import '../../widgets/buttons/button.dart';
 import '../../widgets/height.dart';
@@ -47,22 +49,26 @@ class MenuScreen extends StatelessWidget {
                   bottomRight: Radius.circular(50),
                 ),
               ),
-              child: Row(
-                children: <Widget>[
-                  SvgPicture.asset(
-                    'assets/icons/female_avatar.svg',
-                    width: 44,
-                    height: 44,
-                  ),
-                  const Width(12),
-                  Text(
-                    'Carol Black',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .apply(fontWeightDelta: 2),
-                  ),
-                ],
+              child: BlocBuilder<LoginCubit, LoginState>(
+                builder: (context, state) {
+                  return Row(
+                    children: <Widget>[
+                      SvgPicture.asset(
+                        'assets/icons/female_avatar.svg',
+                        width: 44,
+                        height: 44,
+                      ),
+                      const Width(12),
+                      Text(
+                        state.userModel?.fullName ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .apply(fontWeightDelta: 2),
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
             const Height(30),
