@@ -66,13 +66,18 @@ class MyApp extends StatelessWidget {
         BlocProvider<MenuCubit>(
           create: (_) => MenuCubit(),
         ),
-        // BlocProvider<LoginCubit>(
-        //   create: (_) => LoginCubit(),
-        // ),
         BlocProvider<AuthBloc>(
-          create: (_) => AuthBloc(AuthSuccessState(
-              userModel: UserModel.fromJson(AuthenticationRepository
-                  .sharedInstance.loginInfo['user'] as Map<String, dynamic>))),
+          create: (_) => AuthBloc(
+            AuthSuccessState(
+              userModel:
+                  AuthenticationRepository.sharedInstance.loginInfo['user'] !=
+                          null
+                      ? UserModel.fromJson(AuthenticationRepository
+                          .sharedInstance
+                          .loginInfo['user'] as Map<String, dynamic>)
+                      : null,
+            ),
+          ),
         )
       ],
       child: BlocBuilder<ThemeCubit, ThemeModeState>(
