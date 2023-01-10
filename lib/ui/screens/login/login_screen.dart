@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_production_boilerplate/ui/widgets/loading/loading_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../blocs/auth_bloc/auth_bloc.dart';
-import '../../../cubit/login/login_cubit.dart';
-import '../../../route/router.dart' as route;
 
+import '../../../blocs/auth_bloc/auth_bloc.dart';
+import '../../../route/router.dart' as route;
 import '../../../utils/utils.dart';
 import '../../widgets/buttons/button.dart';
 import '../../widgets/height.dart';
+import '../../widgets/loading/loading_widget.dart';
 import '../../widgets/textfields/text_field.dart';
 import '../../widgets/toast_message/toast_message.dart';
 

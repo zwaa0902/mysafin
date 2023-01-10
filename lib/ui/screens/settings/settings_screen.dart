@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../blocs/auth_bloc/auth_bloc.dart';
 import '../../../cubit/dashboard_cubit.dart';
-import '../../../cubit/login/login_cubit.dart';
 import '../../widgets/app_bar/app_bar.dart';
 import '../../widgets/card/card_transfer/card_transfer_widget.dart';
 import '../../widgets/height.dart';
@@ -28,20 +28,18 @@ class SettingsScreen extends StatelessWidget {
               width: double.infinity,
               child: Column(
                 children: <Widget>[
-                  BlocBuilder<LoginCubit, LoginState>(
+                  BlocBuilder<AuthBloc, AuthState>(
                     builder: (context, state) {
                       return Column(
                         children: <Widget>[
                           const Height(30),
-                          if (state.userModel?.gender == Gender.male)
+                          if (state is AuthSuccessState)
                             SvgPicture.asset(
-                              'assets/icons/male_avatar.svg',
-                              width: 100,
-                            )
-                          else if (state.userModel?.gender == Gender.female)
-                            SvgPicture.asset(
-                              'assets/icons/female_avatar.svg',
-                              width: 100,
+                              state.userModel?.gender == Gender.female
+                                  ? 'assets/icons/female_avatar.svg'
+                                  : 'assets/icons/male_avatar.svg',
+                              width: 44,
+                              height: 44,
                             )
                           else
                             SvgPicture.asset(
@@ -49,16 +47,18 @@ class SettingsScreen extends StatelessWidget {
                               width: 100,
                             ),
                           const Height(12),
-                          Text(
-                            state.userModel?.fullName ?? '',
-                            style:
-                                Theme.of(context).textTheme.titleLarge?.apply(
-                                      fontWeightDelta: 2,
-                                    ),
-                          ),
+                          if (state is AuthSuccessState)
+                            Text(
+                              state.userModel?.fullName ?? '',
+                              style:
+                                  Theme.of(context).textTheme.titleLarge?.apply(
+                                        fontWeightDelta: 2,
+                                      ),
+                            ),
                           const Height(5),
-                          Text(state.userModel?.customerCode ?? '',
-                              style: Theme.of(context).textTheme.labelLarge),
+                          if (state is AuthSuccessState)
+                            Text(state.userModel?.customerCode ?? '',
+                                style: Theme.of(context).textTheme.labelLarge),
                         ],
                       );
                     },
