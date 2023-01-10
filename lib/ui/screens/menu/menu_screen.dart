@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 import '../../../config/theme.dart';
 import '../../../cubit/menu/menu_cubit.dart';
@@ -14,13 +15,13 @@ class MenuItems {
   static const SfMenuItem profile = SfMenuItem('Profile');
   static const SfMenuItem transactions = SfMenuItem('Transactions');
   static const SfMenuItem settings = SfMenuItem('Settings');
-  static const SfMenuItem help = SfMenuItem('Help');
+  // static const SfMenuItem help = SfMenuItem('Help');
   static const List<SfMenuItem> all = <SfMenuItem>[
     dashboard,
     profile,
     transactions,
     settings,
-    help,
+    // help,
   ];
 }
 
@@ -63,17 +64,24 @@ class MenuScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const Spacer(),
+            // const Spacer(),
             BlocBuilder<MenuCubit, MenuState>(
-              builder: (context, state) {
-                return ...MenuItems.all.map((SfMenuItem item) => buildMenuItem(context, item))
-                .toList();
+              builder: (BuildContext context, MenuState state) {
+                return Expanded(
+                  child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: MenuItems.all.length,
+                    itemBuilder: (BuildContext context, int index) =>
+                        buildMenuItemWidget(context, index, state.sfMenuItem),
+                  ),
+                );
+                // ...MenuItems.all.map((SfMenuItem item) => buildMenuItem(context, item))
+                // .toList();
               },
             ),
-                
-            const Spacer(
-              flex: 2,
-            ),
+            // const Spacer(
+            //   flex: 1,
+            // ),
             Container(
               width: 125,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -81,7 +89,9 @@ class MenuScreen extends StatelessWidget {
                 title: 'Logout',
                 type: BtnType.plain,
                 icon: SvgPicture.asset('assets/icons/logout.svg'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
                 size: BtnSize.large,
               ),
             ),
@@ -92,27 +102,57 @@ class MenuScreen extends StatelessWidget {
     );
   }
 
-  Widget buildMenuItem(
+  Widget buildMenuItemWidget(
     BuildContext context,
-    SfMenuItem item,
+    int index,
+    SfMenuItem currentItem,
   ) =>
       Container(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
-            border: Border(
-          left: currentItem == item
-              ? const BorderSide(width: 5, color: AppColor.primary500)
-              : BorderSide.none,
-        )),
+          border: Border(
+            left: (currentItem == MenuItems.all[index])
+                ? const BorderSide(width: 5, color: AppColor.primary500)
+                : BorderSide.none,
+          ),
+        ),
         child: ListTile(
           title: Text(
-            item.title,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .apply(fontWeightDelta: currentItem == item ? 5 : 2),
+            MenuItems.all[index].title,
+            style: Theme.of(context).textTheme.titleMedium!.apply(
+                fontWeightDelta: currentItem == MenuItems.all[index] ? 5 : 2),
           ),
-          onTap: () => onSelectedItem(item),
+          onTap: () {
+            context
+                .read<MenuCubit>()
+                .updateMenuItem(MenuState(sfMenuItem: MenuItems.all[index]));
+            ZoomDrawer.of(context)!.close();
+          },
+          // onSelectedItem(MenuItems.all[index]),
         ),
       );
+
+  // Widget buildMenuItem(
+  //   BuildContext context,
+  //   SfMenuItem item,
+  // ) =>
+  //     Container(
+  //       padding: const EdgeInsets.symmetric(horizontal: 8),
+  //       decoration: BoxDecoration(
+  //           border: Border(
+  //         left: currentItem == item
+  //             ? const BorderSide(width: 5, color: AppColor.primary500)
+  //             : BorderSide.none,
+  //       )),
+  //       child: ListTile(
+  //         title: Text(
+  //           item.title,
+  //           style: Theme.of(context)
+  //               .textTheme
+  //               .titleMedium!
+  //               .apply(fontWeightDelta: currentItem == item ? 5 : 2),
+  //         ),
+  //         onTap: () => onSelectedItem(item),
+  //       ),
+  //     );
 }

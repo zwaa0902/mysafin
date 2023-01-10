@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_production_boilerplate/ui/screens/home/home_screen.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
@@ -31,28 +32,15 @@ class _DashboardPageState extends State<DashboardPage> {
         builder: (_, MenuState state) {
           return ZoomDrawer(
             controller: zoomDrawerController,
-            mainScreen: getScreen(state.sfMenuItem),
+            mainScreen: HomeScreen(
+              currentItem: state.sfMenuItem,
+            ),
             menuScreen: const MenuScreen(),
           );
         },
       ),
+      // bottomNavigationBar: bottomNav(context),
+      // bottomNavigationBar: SizedBox(),
     );
-  }
-
-  Widget getScreen(SfMenuItem currentItem) {
-    switch (currentItem) {
-      case MenuItems.dashboard:
-        return const DashboardScreen();
-      case MenuItems.profile:
-        return const ProfileScreen();
-      case MenuItems.transactions:
-        return const TransactionsScreen();
-      case MenuItems.settings:
-        return const SettingsScreen();
-      case MenuItems.help:
-        return const HelpScreen();
-      default:
-        return const DashboardScreen();
-    }
   }
 }
