@@ -14,15 +14,18 @@ import '../../widgets/width.dart';
 import '../../../route/router.dart' as router;
 
 class MenuItems {
-  static const SfMenuItem dashboard = SfMenuItem('Dashboard');
-  static const SfMenuItem profile = SfMenuItem('Profile');
-  static const SfMenuItem transactions = SfMenuItem('Transactions');
-  static const SfMenuItem settings = SfMenuItem('Settings');
-  // static const SfMenuItem help = SfMenuItem('Help');
+  static const SfMenuItem dashboard =
+      SfMenuItem('Dashboard', Icons.home_rounded);
+  static const SfMenuItem transactions =
+      SfMenuItem('Transactions', Icons.favorite_rounded);
+  static const SfMenuItem profile = SfMenuItem('Profile', Icons.person_rounded);
+  static const SfMenuItem settings =
+      SfMenuItem('Settings', Icons.settings_rounded);
+  // static const SfMenuItem help = SfMenuItem('Help', );
   static const List<SfMenuItem> all = <SfMenuItem>[
     dashboard,
-    profile,
     transactions,
+    profile,
     settings,
     // help,
   ];

@@ -34,8 +34,6 @@ class _DashboardPageState extends State<DashboardPage> {
           );
         },
       ),
-      // bottomNavigationBar: bottomNav(context),
-      // bottomNavigationBar: SizedBox(),
     );
   }
 }

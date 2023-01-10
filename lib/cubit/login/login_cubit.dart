@@ -30,6 +30,10 @@ class LoginCubit extends HydratedCubit<LoginState> {
     }
   }
 
+  void onLogout() {
+    updateUserInfo(const LoginState(userModel: null));
+  }
+
   void updateUserInfo(LoginState state) {
     emit(state);
   }
