@@ -45,7 +45,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 16, top: 6),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
                               icon: Container(
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
@@ -79,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                     const Height(60),
                                     SfTextField(
-                                      label: 'Email',
+                                      label: 'Username',
                                       onChanged: (String value) {},
                                     ),
                                     const Height(30),

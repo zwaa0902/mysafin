@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_production_boilerplate/ui/screens/menu/menu_screen.dart';
 import 'package:flutter_production_boilerplate/ui/widgets/menu/menu_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_zoom_drawer/config.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 import '../../../config/theme.dart';
 import '../../../cubit/dashboard_cubit.dart';
-import '../../widgets/buttons/icon_button.dart';
 import '../../widgets/card/card_cash/card_cash_widget.dart';
 import '../../widgets/height.dart';
-import '../../widgets/list/list_card_avatar/list_card_avatar.dart';
 import '../../widgets/width.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -101,7 +96,7 @@ class DashboardScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          MenuWidget(),
+          const MenuWidget(),
           Text(
             'Dashboard',
             style: Theme.of(context)
