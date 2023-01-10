@@ -9,6 +9,7 @@ import '../../../cubit/menu/menu_cubit.dart';
 import '../../../data/models/auth_model.dart';
 import '../../../data/models/menu_item.dart';
 import '../../widgets/buttons/button.dart';
+import '../../widgets/card/card_transfer/card_transfer_widget.dart';
 import '../../widgets/height.dart';
 import '../../widgets/width.dart';
 import '../../../route/router.dart' as router;
@@ -56,11 +57,24 @@ class MenuScreen extends StatelessWidget {
                 builder: (context, state) {
                   return Row(
                     children: <Widget>[
-                      SvgPicture.asset(
-                        'assets/icons/female_avatar.svg',
-                        width: 44,
-                        height: 44,
-                      ),
+                      if (state.userModel?.gender == Gender.male)
+                        SvgPicture.asset(
+                          'assets/icons/male_avatar.svg',
+                          width: 44,
+                          height: 44,
+                        )
+                      else if (state.userModel?.gender == Gender.female)
+                        SvgPicture.asset(
+                          'assets/icons/female_avatar.svg',
+                          width: 44,
+                          height: 44,
+                        )
+                      else
+                        SvgPicture.asset(
+                          'assets/icons/other_avatar.svg',
+                          width: 44,
+                          height: 44,
+                        ),
                       const Width(12),
                       Text(
                         state.userModel?.fullName ?? '',
