@@ -3,13 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../blocs/auth_bloc/auth_bloc.dart';
-import '../../../route/router.dart' as route;
 import '../../../utils/utils.dart';
 import '../../widgets/buttons/button.dart';
 import '../../widgets/height.dart';
 import '../../widgets/loading/loading_widget.dart';
 import '../../widgets/textfields/text_field.dart';
-import '../../widgets/toast_message/toast_message.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -37,15 +35,15 @@ class _LoginScreenState extends State<LoginScreen> {
         onTap: () => Utils.hideKeyBoard(context),
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
-            if (state is AuthErrorState) {
-              // show dialog
-            } else if (state is AuthSuccessState) {
-              Navigator.pushNamed(context, route.homePage);
-              SfToastMessages().show(
-                  context: context,
-                  text: 'Đăng nhập thành công',
-                  state: ToastMessageState.success);
-            }
+            // if (state is AuthErrorState) {
+            //   // show dialog
+            // } else if (state is AuthSuccessState) {
+            //   Navigator.pushNamed(context, route.homePage);
+            //   SfToastMessages().show(
+            //       context: context,
+            //       text: 'Đăng nhập thành công',
+            //       state: ToastMessageState.success);
+            // }
           },
           builder: (context, state) {
             if (state is AuthLoadingState) {
@@ -63,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final Size size = MediaQuery.of(context).size;
 
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraint) {
+      builder: (_, BoxConstraints constraint) {
         return SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
           child: ConstrainedBox(
