@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'blocs/auth_bloc/auth_bloc.dart';
 import 'config/theme.dart';
+import 'cubit/button/button_cubit.dart';
 import 'cubit/menu/menu_cubit.dart';
 import 'cubit/theme/theme_cubit.dart';
 import 'data/models/user_model.dart';
@@ -62,6 +63,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<ThemeCubit>(
           create: (_) => ThemeCubit(),
+        ),
+        BlocProvider<ButtonCubit>(
+          create: (_) => ButtonCubit(),
         ),
         BlocProvider<MenuCubit>(
           create: (_) => MenuCubit(),

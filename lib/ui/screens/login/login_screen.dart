@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../blocs/auth_bloc/auth_bloc.dart';
+import '../../../cubit/button/button_cubit.dart';
+import '../../../cubit/login_/login_cubit.dart';
 import '../../../route/router.dart' as route;
 import '../../../utils/utils.dart';
 import '../../widgets/buttons/button.dart';
@@ -120,65 +122,116 @@ class _LoginScreenState extends State<LoginScreen> {
                           topRight: Radius.circular(48),
                         ),
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
+                      child: BlocBuilder<ButtonCubit, ButtonState>(
+                        builder: (context, state) {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              const Height(36),
-                              Image.asset(
-                                'assets/img/safin_logo.png',
-                                width: 140,
+                              Column(
+                                children: <Widget>[
+                                  const Height(36),
+                                  Image.asset(
+                                    'assets/img/safin_logo.png',
+                                    width: 140,
+                                  ),
+                                  const Height(60),
+                                  SfTextField(
+                                    controller: usernameController,
+                                    label: 'Username',
+                                    onChanged: (String value) {
+                                      if (value.isEmpty ||
+                                          passwordController.text.isEmpty) {
+                                        context
+                                            .read<ButtonCubit>()
+                                            .updateStateButton(
+                                              const ButtonState(
+                                                disable: true,
+                                              ),
+                                            );
+                                      } else {
+                                        context
+                                            .read<ButtonCubit>()
+                                            .updateStateButton(
+                                              const ButtonState(
+                                                disable: false,
+                                              ),
+                                            );
+                                      }
+                                    },
+                                  ),
+                                  const Height(30),
+                                  SfTextField(
+                                    controller: passwordController,
+                                    label: 'Password',
+                                    obscureText: true,
+                                    onChanged: (String value) {
+                                      if (value.isEmpty ||
+                                          usernameController.text.isEmpty) {
+                                        context
+                                            .read<ButtonCubit>()
+                                            .updateStateButton(
+                                              const ButtonState(
+                                                disable: true,
+                                              ),
+                                            );
+                                      } else {
+                                        context
+                                            .read<ButtonCubit>()
+                                            .updateStateButton(
+                                              const ButtonState(
+                                                disable: false,
+                                              ),
+                                            );
+                                      }
+                                    },
+                                  ),
+                                  const Height(16),
+                                  Text(
+                                    'Forgot Password',
+                                    style:
+                                        Theme.of(context).textTheme.labelMedium,
+                                  )
+                                ],
                               ),
-                              const Height(60),
-                              SfTextField(
-                                controller: usernameController,
-                                label: 'Username',
-                                onChanged: (String value) {},
-                              ),
-                              const Height(30),
-                              SfTextField(
-                                controller: passwordController,
-                                label: 'Password',
-                                obscureText: true,
-                                onChanged: (String value) {},
-                              ),
-                              const Height(16),
-                              Text(
-                                'Forgot Password',
-                                style: Theme.of(context).textTheme.labelMedium,
-                              )
+                              Column(children: <Widget>[
+                                Text(
+                                  'Don’t have an account yet? Register',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge!
+                                      .apply(fontWeightDelta: 2),
+                                ),
+                                const Height(20),
+                                SizedBox(
+                                  width: size.width * 2 / 5,
+                                  child: SfButton(
+                                    disable: state.disable,
+                                    margin: EdgeInsets.zero,
+                                    title: 'Sign in',
+                                    icon: SvgPicture.asset(
+                                        'assets/icons/arrow_right.svg'),
+                                    onTap: () {
+                                      BlocProvider.of<AuthBloc>(context).add(
+                                        LoginEvent(
+                                          username: usernameController.text,
+                                          password: passwordController.text,
+                                        ),
+                                      );
+                                      context
+                                          .read<ButtonCubit>()
+                                          .updateStateButton(
+                                            const ButtonState(
+                                              disable: true,
+                                            ),
+                                          );
+                                    },
+                                  ),
+                                ),
+                                const Height(20),
+                              ])
                             ],
-                          ),
-                          Column(children: <Widget>[
-                            Text(
-                              'Don’t have an account yet? Register',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge!
-                                  .apply(fontWeightDelta: 2),
-                            ),
-                            const Height(20),
-                            SizedBox(
-                              width: size.width * 2 / 5,
-                              child: SfButton(
-                                margin: EdgeInsets.zero,
-                                title: 'Sign in',
-                                icon: SvgPicture.asset(
-                                    'assets/icons/arrow_right.svg'),
-                                onTap: () {
-                                  BlocProvider.of<AuthBloc>(context).add(
-                                    LoginEvent(
-                                      username: usernameController.text,
-                                      password: passwordController.text,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                            const Height(20),
-                          ])
-                        ],
+                          );
+                        },
                       ),
                     ),
                   ],
