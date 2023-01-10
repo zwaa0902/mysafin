@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../blocs/auth_bloc/auth_bloc.dart';
 import '../../../config/theme.dart';
 import '../../../cubit/dashboard_cubit.dart';
-import '../../../cubit/login/login_cubit.dart';
 import '../../widgets/app_bar/app_bar.dart';
 import '../../widgets/height.dart';
 
@@ -56,23 +56,25 @@ class ProfileScreen extends StatelessWidget {
                     flex: 2,
                     child: Column(
                       children: [
-                        BlocBuilder<LoginCubit, LoginState>(
+                        BlocBuilder<AuthBloc, AuthState>(
                             builder: (context, state) {
                           return Column(
                             children: [
-                              Text(
-                                state.userModel?.fullName ?? '',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge
-                                    ?.apply(
-                                      fontWeightDelta: 2,
-                                    ),
-                              ),
+                              if (state is AuthSuccessState)
+                                Text(
+                                  state.userModel?.fullName ?? '',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.apply(
+                                        fontWeightDelta: 2,
+                                      ),
+                                ),
                               const Height(5),
-                              Text(state.userModel?.customerCode ?? '',
-                                  style:
-                                      Theme.of(context).textTheme.labelLarge),
+                              if (state is AuthSuccessState)
+                                Text(state.userModel?.customerCode ?? '',
+                                    style:
+                                        Theme.of(context).textTheme.labelLarge),
                               const Height(12),
                             ],
                           );

@@ -17,6 +17,12 @@ class AuthSuccessState extends AuthState {
   final UserModel? userModel;
 }
 
+class AuthUpdateState extends AuthState {
+  const AuthUpdateState({required this.userModel});
+
+  final UserModel? userModel;
+}
+
 class AuthErrorState extends AuthState {
   const AuthErrorState({required this.message});
 
