@@ -10,6 +10,7 @@ import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'blocs/auth_bloc/auth_bloc.dart';
 import 'config/theme.dart';
 import 'cubit/login/login_cubit.dart';
 import 'data/repository/authentication_repository.dart';
@@ -48,7 +49,7 @@ void main() async {
         ],
         fallbackLocale: const Locale('en'),
         useFallbackTranslations: true,
-        child: const MyApp(),
+        child: MyApp(),
       ),
     ),
     storage: storage,
@@ -68,8 +69,11 @@ class MyApp extends StatelessWidget {
         BlocProvider<MenuCubit>(
           create: (_) => MenuCubit(),
         ),
-        BlocProvider<LoginCubit>(
-          create: (_) => LoginCubit(),
+        // BlocProvider<LoginCubit>(
+        //   create: (_) => LoginCubit(),
+        // ),
+        BlocProvider<AuthBloc>(
+          create: (_) => AuthBloc(AuthInitState()),
         )
       ],
       child: BlocBuilder<ThemeCubit, ThemeModeState>(
