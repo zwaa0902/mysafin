@@ -46,11 +46,12 @@ class AuthenticationRepository {
         if (Utils.isEmpty(username)) {
         } else if (password.isEmpty) {
         } else {
-          final String phone = username.replaceAll(' ', '');
+          final String usernameText = username.replaceAll(' ', '');
+          final String passwordText = password.replaceAll(' ', '');
           final String deviceId = await Utils.deviceId();
           final Map<String, Object> body = {
-            'userName': '0906287182',
-            'passWord': 'Test@123',
+            'userName': usernameText,
+            'passWord': passwordText,
             'realms': 'EXTERNAL',
             'clientID': 'external_management',
             'appCode': 'external_management',
