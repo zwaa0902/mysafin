@@ -6,7 +6,6 @@ import 'package:ionicons/ionicons.dart';
 import '../../../config/theme.dart';
 import '../../../cubit/dashboard_cubit.dart';
 import '../../widgets/card/card_cash/card_cash_widget.dart';
-import '../../widgets/card_cash/card_cash_widget.dart';
 import '../../widgets/first_screen/theme_card.dart';
 import '../../widgets/height.dart';
 import '../../widgets/menu/menu_widget.dart';

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_production_boilerplate/config/theme.dart';
-import 'package:flutter_production_boilerplate/splash/splash.dart';
+import 'package:flutter_production_boilerplate/ui/widgets/splash/splash.dart';
 import 'package:flutter_production_boilerplate/ui/screens/intro/intro_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
