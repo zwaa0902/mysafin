@@ -9,6 +9,7 @@ import '../../../data/models/menu_item.dart';
 import '../../widgets/buttons/button.dart';
 import '../../widgets/height.dart';
 import '../../widgets/width.dart';
+import '../../../route/router.dart' as router;
 
 class MenuItems {
   static const SfMenuItem dashboard = SfMenuItem('Dashboard');
@@ -89,7 +90,8 @@ class MenuScreen extends StatelessWidget {
                 type: BtnType.plain,
                 icon: SvgPicture.asset('assets/icons/logout.svg'),
                 onTap: () {
-                  Navigator.of(context).pop();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, router.introPage, (Route route) => false);
                 },
                 size: BtnSize.large,
               ),

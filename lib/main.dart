@@ -14,6 +14,7 @@ import 'config/theme.dart';
 import 'data/repository/authentication_repository.dart';
 import 'route/router.dart';
 import 'cubit/theme/theme_cubit.dart';
+import 'ui/screens/dashboard/dashboard_page.dart';
 import 'ui/screens/home/home_screen.dart';
 import 'ui/screens/intro/intro_screen.dart';
 import 'ui/screens/skeleton_screen.dart';
@@ -85,7 +86,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: AuthenticationRepository.sharedInstance.loginInfo['user'] !=
                     null
-                ? HomeScreen()
+                ? DashboardPage()
                 : const IntroScreen(),
             onGenerateRoute: SfRouter.generateRoute,
           );

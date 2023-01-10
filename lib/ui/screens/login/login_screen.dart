@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../data/repository/authentication_repository.dart';
 import '../../../route/router.dart' as route;
 
+import '../../../utils/exception/exception.dart';
 import '../../../utils/utils.dart';
 import '../../widgets/buttons/button.dart';
 import '../../widgets/height.dart';
@@ -117,16 +116,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                       icon: SvgPicture.asset(
                                           'assets/icons/arrow_right.svg'),
                                       onTap: () async {
-                                        await AuthenticationRepository
-                                            .sharedInstance
-                                            .login(
-                                          username: 'username',
-                                          password: 'password',
-                                        );
-                                        Navigator.pushNamed(
-                                          context,
-                                          route.homePage,
-                                        );
+                                        try {
+                                          await AuthenticationRepository
+                                              .sharedInstance
+                                              .login(
+                                            username: 'username',
+                                            password: 'password',
+                                          );
+                                          Navigator.pushNamed(
+                                            context,
+                                            route.homePage,
+                                          );
+                                        } on SfHttpException catch (ex) {
+                                          if (ex.code == 404) {
+                                            print(
+                                                'Invalid username or password.');
+                                          }
+                                        }
                                       },
                                     ),
                                   ),
